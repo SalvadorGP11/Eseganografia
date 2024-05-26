@@ -5,6 +5,7 @@ from tkinter import filedialog
 from tkinter import messagebox
 from PIL import Image
 
+#A
 def detect_and_remove_steganography(image_path, output_path, cleaned_image_path, passphrase, text_widget):
     try:
         subprocess.run(['steghide', 'extract', '-sf', image_path, '-xf', output_path, '-p', passphrase], check=True)
@@ -20,7 +21,7 @@ def detect_and_remove_steganography(image_path, output_path, cleaned_image_path,
         text_widget.delete("1.0", END)
         text_widget.insert(END, "No se detectó contenido oculto.")
         messagebox.showerror("Error", f"No se detectó contenido oculto en: {image_path}")
-
+#B
 def clean_image(image_path, cleaned_image_path, text_widget):
     try:
         with Image.open(image_path) as img:
@@ -32,12 +33,12 @@ def clean_image(image_path, cleaned_image_path, text_widget):
         text_widget.delete("1.0", END)
         text_widget.insert(END, f"Error al procesar la imagen: {e}")
         messagebox.showerror("Error", f"Error al procesar la imagen: {e}")
-
+#C
 def browse_file(entry):
     filename = filedialog.askopenfilename()
     entry.delete(0, END)
     entry.insert(0, filename)
-
+#D
 def create_extract_and_clean_window():
     window = Toplevel(root)
     window.title("Extraer y Limpiar con Frase de Paso")
@@ -73,7 +74,7 @@ def create_extract_and_clean_window():
     # Botones
     Button(window, text="Extraer y limpiar", command=lambda: detect_and_remove_steganography(image_entry.get(), output_entry.get(), cleaned_image_entry.get(), passphrase_entry.get(), text_widget)).grid(row=5, column=0, columnspan=3, padx=10, pady=10)
     Button(window, text="Cerrar", command=window.destroy).grid(row=6, column=0, columnspan=3, padx=10, pady=10)
-
+#E
 def create_clean_only_window():
     window = Toplevel(root)
     window.title("Limpiar sin Usar la Frase de Paso")
@@ -98,7 +99,7 @@ def create_clean_only_window():
     # Botones
     Button(window, text="Limpiar", command=lambda: clean_image(image_entry.get(), cleaned_image_entry.get(), text_widget)).grid(row=3, column=0, columnspan=3, padx=10, pady=10)
     Button(window, text="Cerrar", command=window.destroy).grid(row=4, column=0, columnspan=3, padx=10, pady=10)
-
+#F
 def main():
     global root
     root = Tk()
@@ -112,7 +113,7 @@ def main():
     Button(root, text="Salir", command=root.quit).grid(row=2, column=0, columnspan=2, padx=10, pady=10)
 
     root.mainloop()
-
+#G
 if __name__ == "__main__":
     main()
 
